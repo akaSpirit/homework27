@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class Movie {
+public class Movie implements Comparable<Movie> {
     List<Movie> movies = new ArrayList<>();
     private String name;
     private int year;
@@ -10,39 +8,35 @@ public class Movie {
     private Director director;
     private Cast[] cast;
 
-    public Movie() {
+    public String getName() {
+        return name;
     }
 
-    public static class Director {
-        private String fullName;
-
-        @Override
-        public String toString() {
-            return fullName;
-        }
+    public int getYear() {
+        return year;
     }
 
-    public static class Cast {
-        private String fullName;
-        private String role;
+    public String getDescription() {
+        return description;
+    }
 
-        @Override
-        public String toString() {
-            return String.format("%s as '%s'", fullName, role);
-        }
+    public Director getDirector() {
+        return director;
+    }
+
+    public String getDirectorFullName() {
+        return director.getFullName();
+    }
+
+    public Cast[] getCast() {
+        return cast;
     }
 
     @Override
-    public String toString() {
-        return String.format("%nName: %s " +
-                        "%nYear: %s " +
-                        "%nDescription: %s " +
-                        "%nDirector: %s " +
-                        "%nCast: %s %n",
-                        name,
-                        year,
-                        description,
-                        director,
-                        Arrays.toString(cast).replace("[", "").replace("]", ""));
+    public int compareTo(Movie o) {
+        if (this.getName().equals(o.getName())) {
+            return this.getDescription().compareTo(o.getDescription());
+        }
+        return this.getName().compareTo(o.getName());
     }
 }
