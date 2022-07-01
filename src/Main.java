@@ -245,8 +245,15 @@ public class Main {
                 actor.add(c);
             }
         }
+        Comparator<Cast> cmp = Comparator.comparing(Cast::getFullName);
+        List<Cast> casts = new ArrayList<>();
 
-        for (Cast a : actor) {
+        for (Cast c : actor){
+            casts.add(c);
+        }
+
+        casts.sort(cmp);
+        for (Cast a : casts) {
             System.out.printf("Actor: %s, Role: %s%n", a.getFullName(), a.getRole());
         }
     }
