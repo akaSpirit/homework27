@@ -239,21 +239,15 @@ public class Main {
     }
 
     public static void getActorAndRole(List<Movie> movieList) {
-        Set<String> actor = new HashSet<>();
+        Set<Cast> actor = new HashSet<>();
         for (Movie m : movieList) {
             for (Cast c : m.getCast()) {
-                actor.add(c.getFullName());
+                actor.add(c);
             }
         }
 
-        for (String a : actor) {
-            for (Movie m : movieList) {
-                for (Cast c : m.getCast()) {
-                    if (c.getFullName().contains(a)) {
-                        System.out.printf("Actor: %s, Movie: %s, Role: %s%n", c.getFullName(), m.getName(), c.getRole());
-                    }
-                }
-            }
+        for (Cast a : actor) {
+            System.out.printf("Actor: %s, Role: %s%n", a.getFullName(), a.getRole());
         }
     }
 
